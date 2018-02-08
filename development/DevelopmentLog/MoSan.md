@@ -45,5 +45,8 @@ Note：模板
 - Today Finshments
  1. 暂未完成
 - Tomorrow Plans
- 1. ...
+  1. 修复ubuntu开发环境无线网卡设备未启动问题
+  2. 部署网站雏形并进行BUG调试
+  3. 与前端协作实现注册、登录账号依据以及实现验证码功能
+ 
 
