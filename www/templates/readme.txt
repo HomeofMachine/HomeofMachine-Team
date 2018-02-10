@@ -1,1 +1,1 @@
-Note：这里存放模板文件，即HTML
+锘縉ote锛氳繖閲屽瓨鏀炬ā鏉挎枃浠讹紝鍗矵TML

@@ -1,1 +1,1 @@
-Note：这里存放静态文件，如css，js
+锘縉ote锛氳繖閲屽瓨鏀鹃潤鎬佹枃浠讹紝濡俢ss锛宩s
