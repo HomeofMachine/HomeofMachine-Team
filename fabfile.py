@@ -23,7 +23,7 @@ _TAR_FILE = 'dist-machine.tar.gz'
 
 _REMOTE_TMP_TAR = '/tmp/%s' % _TAR_FILE
 
-_REMOTE_BASE_DIR = '/srv/machine'
+_REMOTE_BASE_DIR = '/srv/HomeofMachine'
 
 def _current_path():
     return os.path.abspath('.')
