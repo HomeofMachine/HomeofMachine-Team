@@ -80,6 +80,13 @@ Note：模板
  1. 实现注册、登录页
  2. Leetcode 完成1+2
 
+2018-2-24
 
- 
+- Today Finshments
+ 1. 无（春节休息到今天，才折腾开工）
+- Tomorrow Plans
+ 1. LeetCode 1+2
+ 2. 理清注册、登录实现逻辑
+ 3. 了解前端HTML、JS、CSS
+
 
