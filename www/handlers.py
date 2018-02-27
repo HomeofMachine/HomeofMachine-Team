@@ -94,7 +94,7 @@ def index(*, page='1'):
         blogs = yield from Blog.findAll(orderBy='created_at desc', limit=(page.offset, page.limit))
 '''
 
-@get('/blog/{id}')
+@get('/blog/{id}') #获取博客id
 def get_blog(id):
     blog = yield from Blog.find(id)
     comments = yield from Comment.findAll('blog_id=?', [id], orderBy='created_at desc')
@@ -107,16 +107,16 @@ def get_blog(id):
         'comments': comments
     }
 
-@get('/register')
+@get('/register') #注册处理
 def register():
     return {
         '__template__': 'register.html'
     }
 
-@get('/signin')
+@get('/signin') #登录处理
 def signin():
     return {
-        '__template__': 'signin.html'
+        '__template__': 'login.html'
     }
 
 #新增验证码登录
@@ -124,7 +124,7 @@ def signin():
 def getcode():
     pass 
 
-@post('/api/authenticate') #post型URL处理函数：登录信息验证
+@post('/api/authenticate') #传送登录信息验证
 def authenticate(*, email, passwd):
     if not email: #若邮件空
         raise APIValueError('email', 'Invalid email.') #产生错误
@@ -204,12 +204,6 @@ def test1(*, page='2'):
 	return {
 		'__template__': 'manage_users.html',
 		'page_index': get_page_index(page)
-	}
-@get('/test2')
-def test2():
-	return {
-		
-"hello,world"                       		
 	}
 
 @get('/api/comments')

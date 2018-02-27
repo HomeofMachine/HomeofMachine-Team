@@ -43,7 +43,7 @@ def init_jinja2(app, **kw): # 初始化jinja2引擎函数
             env.filters[name] = f
     app['__templating__'] = env #将app的内部参数templating设置为env实例
 
-@asyncio.coroutine
+@asyncio.coroutine #python的@语法，放在函数的定义处，此处表示：logger_factory = asyncio.coroutine(logger_factory);把定义后的函数作为参数传送给@后的函数
 def logger_factory(app, handler): #日志记录器工厂协程函数
     @asyncio.coroutine
     def logger(request): #日志记录器协程函数
@@ -144,7 +144,7 @@ def init(loop): #初始化函数
         logger_factory, auth_factory, response_factory
     ]) #web库方法Application传入循环实例，以获取web app实例
     init_jinja2(app, filters=dict(datetime=datetime_filter)) #自写函数传入app实例，初始化jinja2模板引擎
-    add_routes(app, 'handlers')
+    add_routes(app, 'handlers') #增加路径
     add_static(app)
     srv = yield from loop.create_server(app.make_handler(), '127.0.0.1', 9000)
     logging.info('server started at http://127.0.0.1:9000...')
