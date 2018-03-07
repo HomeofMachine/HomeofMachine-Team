@@ -3,13 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../static/css/slide.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/css.css">
     <script src="../static/js/jquery1.0.0.1.js"></script>
-    <script src="../static/js/index.js"></script>
+    <script src="../static/js/slide.js"></script>
 
 </head>
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        text-decoration: none;
+    }
+    ul,ol,li {
+        list-style: none;
+    }
+    .header {
+        width: 1200px;
+        height: 140px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .header-l {
+        position: absolute;
+        width: 151px;
+        height: 63px;
+        display: block;
+        float: left;
+        margin-top: 36px;
+    }
+    .header-search {
+        width: 520px;
+        height: 70px;
+        position: absolute;
+        float: left;
+        left: 50%;
+        margin-left: -260px;
+        margin-top: 36px;
+    }
+    .header-search input {
+        width: 440px;
+        height: 40px;
+        border: 2px solid #27CBAB;
+        margin-bottom: 5px;
+    }
+    .header-search .button {
+        width: 76px;
+        height: 44px;
+        float: right;
+        background: #27CBAB;
+    }
+    .header-search .button span {
+        color: #fff;
+        display: block;
+        font-size: 18px;
+        line-height: 44px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .header-search a {
+        display: block;
+        float: left;
+        margin-right: 35px;
+        color: #c8c8c8;
+    }
+    .header-r {
+        position: absolute;
+        right: 0;
+        width: 162px;
+        height: 38px;
+        margin-top: 36px;
+    }
+    .header-r .register {
+        width: 80px;
+        height: 38px;
+        float: left;
+        border: 1px solid #27CBAB;
+        border-right: none;
+    }
+    .header-r .login {
+        width: 80px;
+        height: 38px;
+        float: right;
+        border: 1px solid #27CBAB;
+        border-left: none;
+    }
+    .header-r a {
+        display: block;
+        font-size: 18px;
+        line-height: 38px;
+        color: #27CBAB;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .header-r .header-r-current {
+        background-color: #27CBAB;
+    }
+    .header-r .header-r-current a {
+        color: #fff;
+    }
+    /*头部区域结束*/
+
+
+    /*nav部分开始*/
+
+    .nav {
+        width: 100%;
+        height: 44px;
+        background-color: #27CBAB;
+    }
+    .nav .nav-content {
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .nav-content-all {
+        width: 142px;
+        height: 34px;
+        padding-left: 30px;
+        padding-top: 10px;
+        font-size: 16px;
+        color: #ffffff;
+        background: #00B38A;
+        position: absolute;
+    }
+    .nav-content-all span {
+        display: inline-block;
+        position: absolute;
+        width: 14px;
+        height: 7px;
+        left: 110px;
+        top: 10px;
+    }
+    .nav .nav-content .nav-ul {
+        position: absolute;
+        left: 172px;
+    }
+    .nav .nav-content .nav-ul li {
+        float: left;
+        color: #fff;
+        font-size: 16px;
+        line-height: 44px;
+    }
+    .nav .nav-content .nav-ul li a {
+        float: left;
+        color: #fff;
+        font-size: 16px;
+        line-height: 44px;
+        padding: 0 35px;
+    }
+    .nav .nav-content .nav-all-ul {
+        width: 170px;
+        position: absolute;
+        background: #27CBAB;
+        border: 1px solid #c8c8c8;
+        border-top: none;
+        left: 0;
+        top: 44px;
+    }
+    .nav .nav-content .nav-all-ul li {
+        height: 50px;
+        line-height: 50px;
+        padding-left: 50px;
+    }
+
+
     /*footer部分开始*/
     .footer {
         width: 100%;
@@ -147,7 +306,7 @@
     </div>
     <div class="header-search">
         <input type="text">
-        <div class="search-button">
+        <div class="button">
             <span>搜索</span>
         </div>
         <div class="recommend">
@@ -159,8 +318,11 @@
         </div>
     </div>
     <div class="header-r">
-        <div class="register"><a href="register.html">注册</a></div>
-        <div class="login header-r-current"><a href="login.html">登录</a></div>
+        <div><a href="#">
+        <?php
+        echo $_POST['userName'].'您好，机械之家欢迎您！'
+        ?>
+        </a></div>
     </div>
 </div>
 <!--头部区域结束-->
@@ -171,14 +333,14 @@
     <div class="nav-content">
         <div class="nav-content-all">
             全部分类<span><img src="../static/images/sj.png" alt=""></span>
-            <ul class="nav-all-ul" id="all-ul">
-                <li><a>软件教程</a></li>
-                <li><a>行业资料</a></li>
-                <li><a>二维图纸</a></li>
-                <li><a>三维图纸</a></li>
-                <li><a>考研交流</a></li>
-                <li><a>PPT模板</a></li>
-                <li><a>简历模板</a></li>
+            <ul class="nav-all-ul">
+                <li>软件教程</li>
+                <li>行业资料</li>
+                <li>二维图纸</li>
+                <li>三维图纸</li>
+                <li>考研交流</li>
+                <li>PPT模板</li>
+                <li>简历模板</li>
             </ul>
         </div>
         <ul class="nav-ul">
@@ -212,12 +374,13 @@
         </div>
     </div>
 </div>
-!--banner部分结束-->
+
+<!--banner部分结束-->
 
 
 <!--footer部分开始-->
 <div class="footer">
-    <div class="footer-content">   
+    <div class="footer-content">
         <div class="footer-l">
             <img src="../static/images/logo.png" alt="" class="logo">
             <div class="top"><i></i><span>995542247</span></div>
@@ -253,6 +416,7 @@
         </div>
     </div>
 </div>
+
 <div class="footer-bottom w">
     <div class="footer-bottom-link">
         <a href="#" id="first-a">关于我们</a>|
@@ -277,7 +441,5 @@
         Copyright © 2004 - 2017  机械JX.com 版权所有|消费者维权热线：4006067733经营证照<br>
     </div>
 </div>
-<!--footer部分结束->
-
 </body>
 </html>

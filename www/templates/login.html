@@ -42,7 +42,7 @@
             color: #27CBAB;
             margin: 60px auto -20px;
         }
-        .inf .name,.password ,.e-mail ,.button{
+        .inf .userName,.password ,.button{
             width: 400px;
             margin: 60px auto;
         }
@@ -86,20 +86,22 @@
         <img src="../static/images/rack.gif" alt="">
     </div>
     <div class="inf">
-        <div class="wel">您好，请登录</div>
-        <div class="name">
-            <input type="text">
-            <lable>昵称</lable>
-            <div class="name-hint"></div>
-        </div>
-        <div class="password">
-            <input type="password">
-            <lable>密码</lable>
-            <div class="password-hint"></div>
-        </div>
-        <div class="button">
-            <input type="submit" value="登录">
-        </div>
+        <form action="index.php" method="post">
+            <div class="wel">您好，请登录</div>
+                <div class="userName">
+                    <input type="text" name="userName">
+                    <lable>昵称</lable>
+                    <div class="name-hint"></div>
+                </div>
+                <div class="password">
+                    <input type="password">
+                    <lable>密码</lable>
+                    <div class="password-hint"></div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="登录">
+                </div>
+        </form>
     </div>
 </div>
 
