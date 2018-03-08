@@ -1,22 +1,174 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<!-- saved from url=(0066)file:///home/moshuang/HomeofMachine-Team/www/templates/index.html# -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <title>机械之家</title>
-=======
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../static/css/slide.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/css.css">
     <script src="../static/js/jquery1.0.0.1.js"></script>
-    <script src="../static/js/index.js"></script>
+    <script src="../static/js/slide.js"></script>
 
 </head>
->>>>>>> 6186abc14a13e9a1633c8c1c3897f71626cf16fd
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        text-decoration: none;
+    }
+    ul,ol,li {
+        list-style: none;
+    }
+    .header {
+        width: 1200px;
+        height: 140px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .header-l {
+        position: absolute;
+        width: 151px;
+        height: 63px;
+        display: block;
+        float: left;
+        margin-top: 36px;
+    }
+    .header-search {
+        width: 520px;
+        height: 70px;
+        position: absolute;
+        float: left;
+        left: 50%;
+        margin-left: -260px;
+        margin-top: 36px;
+    }
+    .header-search input {
+        width: 440px;
+        height: 40px;
+        border: 2px solid #27CBAB;
+        margin-bottom: 5px;
+    }
+    .header-search .button {
+        width: 76px;
+        height: 44px;
+        float: right;
+        background: #27CBAB;
+    }
+    .header-search .button span {
+        color: #fff;
+        display: block;
+        font-size: 18px;
+        line-height: 44px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .header-search a {
+        display: block;
+        float: left;
+        margin-right: 35px;
+        color: #c8c8c8;
+    }
+    .header-r {
+        position: absolute;
+        right: 0;
+        width: 162px;
+        height: 38px;
+        margin-top: 36px;
+    }
+    .header-r .register {
+        width: 80px;
+        height: 38px;
+        float: left;
+        border: 1px solid #27CBAB;
+        border-right: none;
+    }
+    .header-r .login {
+        width: 80px;
+        height: 38px;
+        float: right;
+        border: 1px solid #27CBAB;
+        border-left: none;
+    }
+    .header-r a {
+        display: block;
+        font-size: 18px;
+        line-height: 38px;
+        color: #27CBAB;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .header-r .header-r-current {
+        background-color: #27CBAB;
+    }
+    .header-r .header-r-current a {
+        color: #fff;
+    }
+    /*头部区域结束*/
+
+
+    /*nav部分开始*/
+
+    .nav {
+        width: 100%;
+        height: 44px;
+        background-color: #27CBAB;
+    }
+    .nav .nav-content {
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .nav-content-all {
+        width: 142px;
+        height: 34px;
+        padding-left: 30px;
+        padding-top: 10px;
+        font-size: 16px;
+        color: #ffffff;
+        background: #00B38A;
+        position: absolute;
+    }
+    .nav-content-all span {
+        display: inline-block;
+        position: absolute;
+        width: 14px;
+        height: 7px;
+        left: 110px;
+        top: 10px;
+    }
+    .nav .nav-content .nav-ul {
+        position: absolute;
+        left: 172px;
+    }
+    .nav .nav-content .nav-ul li {
+        float: left;
+        color: #fff;
+        font-size: 16px;
+        line-height: 44px;
+    }
+    .nav .nav-content .nav-ul li a {
+        float: left;
+        color: #fff;
+        font-size: 16px;
+        line-height: 44px;
+        padding: 0 35px;
+    }
+    .nav .nav-content .nav-all-ul {
+        width: 170px;
+        position: absolute;
+        background: #27CBAB;
+        border: 1px solid #c8c8c8;
+        border-top: none;
+        left: 0;
+        top: 44px;
+    }
+    .nav .nav-content .nav-all-ul li {
+        height: 50px;
+        line-height: 50px;
+        padding-left: 50px;
+    }
+
+
     /*footer部分开始*/
     .footer {
         width: 100%;
@@ -144,40 +296,33 @@
         margin-top: 16px;
         font-size: 14px;
     }
-</style></head>
-
+</style>
 
 <body>
 <!--头部区域开始-->
 <div class="header">
     <div class="header-l">
-<<<<<<< HEAD
-        <img src="file:///static/images/logo.png" alt="">
-=======
         <img src="../static/images/logo.png" alt="">
->>>>>>> 6186abc14a13e9a1633c8c1c3897f71626cf16fd
     </div>
     <div class="header-search">
         <input type="text">
-        <div class="search-button">
+        <div class="button">
             <span>搜索</span>
         </div>
         <div class="recommend">
-            <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">发动机</a>
-            <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">二维图纸</a>
-            <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">机械之家</a>
-            <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">啦啦啦</a>
-            <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">加速器</a>
+            <a href="#">发动机</a>
+            <a href="#">二维图纸</a>
+            <a href="#">机械之家</a>
+            <a href="#">啦啦啦</a>
+            <a href="#">加速器</a>
         </div>
     </div>
     <div class="header-r">
-<<<<<<< HEAD
-        <div class="register"><a href="/register">注册</a></div>
-        <div class="login header-r-current"><a href="/signin">登录</a></div>
-=======
-        <div class="register"><a href="register.html">注册</a></div>
-        <div class="login header-r-current"><a href="login.html">登录</a></div>
->>>>>>> 6186abc14a13e9a1633c8c1c3897f71626cf16fd
+        <div><a href="#">
+        <?php
+        echo $_POST['userName'].'您好，机械之家欢迎您！'
+        ?>
+        </a></div>
     </div>
 </div>
 <!--头部区域结束-->
@@ -187,8 +332,7 @@
 <div class="nav">
     <div class="nav-content">
         <div class="nav-content-all">
-<<<<<<< HEAD
-            全部分类<span><img src="file:///static/images/sj.png" alt=""></span>
+            全部分类<span><img src="../static/images/sj.png" alt=""></span>
             <ul class="nav-all-ul">
                 <li>软件教程</li>
                 <li>行业资料</li>
@@ -197,24 +341,13 @@
                 <li>考研交流</li>
                 <li>PPT模板</li>
                 <li>简历模板</li>
-=======
-            全部分类<span><img src="../static/images/sj.png" alt=""></span>
-            <ul class="nav-all-ul" id="all-ul">
-                <li><a>软件教程</a></li>
-                <li><a>行业资料</a></li>
-                <li><a>二维图纸</a></li>
-                <li><a>三维图纸</a></li>
-                <li><a>考研交流</a></li>
-                <li><a>PPT模板</a></li>
-                <li><a>简历模板</a></li>
->>>>>>> 6186abc14a13e9a1633c8c1c3897f71626cf16fd
             </ul>
         </div>
         <ul class="nav-ul">
-            <li><a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">软件教程</a></li>
-            <li><a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">行业资料</a></li>
-            <li><a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">图纸下载</a></li>
-            <li><a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">考研交流</a></li>
+            <li><a href="#">软件教程</a></li>
+            <li><a href="#">行业资料</a></li>
+            <li><a href="#">图纸下载</a></li>
+            <li><a href="#">考研交流</a></li>
         </ul>
     </div>
 </div>
@@ -222,16 +355,6 @@
 
 
 <!--banner部分开始-->
-<<<<<<< HEAD
-<div class="banner">
-    <ul>
-        <li><a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#"><img src="file:///static/images/banner.jpg" alt=""></a></li>
-        <li><a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#"><img src="file:///static/images/banner.jpg" alt=""></a></li>
-        <li><a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#"><img src="file:///static/images/banner.jpg" alt=""></a></li>
-        <li><a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#"><img src="file:///static/images/banner.jpg" alt=""></a></li>
-        <li><a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#"><img src="file:///static/images/banner.jpg" alt=""></a></li>
-    </ul>
-=======
 <div class="banner" id="banner">
     <div class="wrap" id="wrap">
         <div class="slide" id="slide">
@@ -250,20 +373,16 @@
             </div>
         </div>
     </div>
->>>>>>> 6186abc14a13e9a1633c8c1c3897f71626cf16fd
 </div>
-!--banner部分结束-->
+
+<!--banner部分结束-->
 
 
 <!--footer部分开始-->
 <div class="footer">
-    <div class="footer-content">   
+    <div class="footer-content">
         <div class="footer-l">
-<<<<<<< HEAD
-            <img src="file:///static/images/logo.png" alt="" class="logo">
-=======
             <img src="../static/images/logo.png" alt="" class="logo">
->>>>>>> 6186abc14a13e9a1633c8c1c3897f71626cf16fd
             <div class="top"><i></i><span>995542247</span></div>
             <div class="bottom"><i></i><span>400-820-8820</span></div>
         </div>
@@ -297,23 +416,24 @@
         </div>
     </div>
 </div>
+
 <div class="footer-bottom w">
     <div class="footer-bottom-link">
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#" id="first-a">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">关于我们</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#">English Site</a>|
-        <a href="file:///home/moshuang/HomeofMachine-Team/www/templates/index.html#" id="last-a">Media &amp; IR</a>
+        <a href="#" id="first-a">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">关于我们</a>|
+        <a href="#">English Site</a>|
+        <a href="#" id="last-a">Media & IR</a>
     </div>
     <div class="footer-bottom-copyright">
         京公网安备 11000002000088号|京ICP证070359号|互联网药品信息服务资格证编号(京)-经营性-2014-0008|新出发京零 字第大120007号<br>
@@ -321,15 +441,5 @@
         Copyright © 2004 - 2017  机械JX.com 版权所有|消费者维权热线：4006067733经营证照<br>
     </div>
 </div>
-<!--footer部分结束->
-
-<<<<<<< HEAD
-
-<script></script>
-
-
-</body></html>
-=======
 </body>
 </html>
->>>>>>> 6186abc14a13e9a1633c8c1c3897f71626cf16fd

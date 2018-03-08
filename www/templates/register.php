@@ -87,9 +87,9 @@
         </div>
         <div class="inf">
             <div class="wel">欢迎注册机械之家</div>
-            <form action="" method="post">
+            <form action="register.php" method="post">
                 <div class="name">
-                <input type="text" name="userName">
+                <input type="text">
                 <lable>昵称</lable>
                 <div class="name-hint"></div>
                 </div>
