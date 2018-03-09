@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>登录页面</title>
+    <script src="../static/js/login.js"></script>
 
     <style>
         * {
@@ -52,13 +53,13 @@
             font-size: 20px;
             padding-left: 6px;
         }
-        .inf lable {
+        .inf .error-hint {
             display: inline-block;
             position: absolute;
-            font-size: 20px;
-            color: #c8c8c8;
+            font-size: 15px;
+            color: red;
             left: 60px;
-            margin-top: -35px;
+            margin-top: -0px;
         }
         .inf .button {
             width: 200px;
@@ -79,27 +80,25 @@
 <body>
 
 <div class="title">
-    <img src="../static/images/logo.jpg" alt="">
+    <img src="../static/images/jxzj_black.png" alt="">
 </div>
 <div class="w">
     <div class="bg">
         <img src="../static/images/rack.gif" alt="">
     </div>
     <div class="inf">
-        <form action="index.php" method="post">
+        <form action="" method="">
             <div class="wel">您好，请登录</div>
                 <div class="userName">
-                    <input type="text" name="userName">
-                    <lable>昵称</lable>
-                    <div class="name-hint"></div>
+                    <input type="text" placeholder="用户名" id="userName" name="userName">
+                    <lable class="error-hint"></lable>
                 </div>
                 <div class="password">
-                    <input type="password">
-                    <lable>密码</lable>
-                    <div class="password-hint"></div>
+                    <input placeholder="密码" id="password" type="password">
+                    <lable class="error-hint"></lable>
                 </div>
                 <div class="button">
-                    <input type="submit" value="登录">
+                    <input type="submit" id="button" value="登录">
                 </div>
         </form>
     </div>

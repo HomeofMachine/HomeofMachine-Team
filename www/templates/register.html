@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>注册页面</title>
-
+    <script src="../static/js/register.js"></script>
+    <script src="../static/js/jquery-1.11.1.min.js"></script>
+    <script src="../static/js/ajax_tool.js"></script>
     <style>
         * {
             margin: 0;
@@ -50,21 +52,40 @@
             width: 394px;
             height: 40px;
             font-size: 20px;
+            outline: none;
             padding-left: 6px;
         }
-        .inf lable {
-            display: inline-block;
+        .inf .error-hint {
             position: absolute;
-            font-size: 20px;
-            color: #c8c8c8;
+            font-size: 15px;
+            color: red;
             left: 60px;
-            margin-top: -35px;
+            display: none;
+            margin-top: -0px;
+        }
+        .inf .right-hint {
+            position: absolute;
+            font-size: 15px;
+            color: #0aa728;
+            left: 60px;
+            display: none;
+            margin-top: -0px;
+        }
+        .inf .hint {
+            position: absolute;
+            font-size: 15px;
+            color: #27CBAB;
+            left: 60px;
+            display: none;
+            margin-top: -0px;
         }
         .inf .button {
             width: 200px;
             height: 60px;
         }
         .inf .button input {
+            text-align: center;
+            cursor: pointer;
             width: 200px;
             height: 60px;
             border-radius: 5px;
@@ -79,7 +100,7 @@
 <body>
 
     <div class="title">
-        <img src="../static/images/logo.jpg" alt="">
+        <img src="../static/images/jxzj_black.png" alt="">
     </div>
     <div class="w">
         <div class="bg">
@@ -89,21 +110,31 @@
             <div class="wel">欢迎注册机械之家</div>
             <form action="" method="post">
                 <div class="name">
-                <input type="text" name="userName">
-                <lable>昵称</lable>
-                <div class="name-hint"></div>
+                    <input type="text" maxlength="10" onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" id="userName" name="userName" placeholder="用户名">
+                    <lable class="hint"></lable>
+                    <lable class="error-hint"></lable>
+                    <lable class="right-hint"></lable>
                 </div>
                 <div class="password">
-                    <input type="password">
-                    <lable>密码</lable>
-                     <div class="password-hint"></div>
+                    <input type="password" onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" id="password" placeholder="密码">
+                    <lable class="hint"></lable>
+                    <lable class="error-hint"></lable>
+                    <lable class="right-hint"></lable>
+                </div>
+                <div class="password">
+                    <input type="password" onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" id="t-password" name="password" placeholder="确认密码">
+                    <lable class="hint"></lable>
+                    <lable class="error-hint"></lable>
+                    <lable class="right-hint"></lable>
                 </div>
                 <div class="e-mail">
-                    <input type="text">
-                    <lable>邮箱</lable>
+                    <input type="text" id="Email" name="Email" placeholder="邮箱">
+                    <lable class="hint"></lable>
+                    <lable class="error-hint"></lable>
+                    <lable class="right-hint"></lable>
                 </div>
                 <div class="button">
-                    <input type="submit" value="立即注册">
+                    <input type="submit" id="button" value="立即注册">
                 </div>
             </form>
         </div>
