@@ -8,7 +8,7 @@
 
 ###2. 开发软件
  - 前端：JavaScript、HTML、CSS
- - 后端：Python
+ - 后端：Python 3.5
  - 数据库：MySQL
  - 服务器架构 ：aiohttp
  - web服务器：Nginx
@@ -23,16 +23,8 @@
   - 私有IP：172.17.60.23
   - 带宽：1Mbps
 
+- 域名提供商：万网
+- 具体信息：
+  - 域名：www.okaeri.top
 ###4. 主题
  - 机械相关周边内容
-<<<<<<< HEAD
-
- Creating a new branch is quick.
- Branch manage.
-<<<<<<< HEAD
- Creating a new brach is quick and simple.
-=======
- Creating a new brach is quick and simple.
->>>>>>> feature1
-=======
->>>>>>> 0c7f9559439c02bdc689f18b02f47ae20f6828b7
