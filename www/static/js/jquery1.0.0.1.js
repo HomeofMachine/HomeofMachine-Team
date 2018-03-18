@@ -74,7 +74,7 @@ function animate(ele,json,fn){
                 fn();
             }
         }
-    },25);
+    },30);
 }
 
 

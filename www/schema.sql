@@ -1,14 +1,13 @@
--- schema.sql
+-- schema.sql 注释方式，需要注意的是符号后必须先一个空格
 
-drop database if exists awesome;
+drop database if exists jxzj; -- 检查若存在该数据库先行删除
 
-create database awesome;
+create database jxzj; -- 创建数据库
 
-use awesome;
+use jxzj; -- 使用该数据库
+grant select, insert, update, delete on jxzj.* to 'www-data'@'localhost' identified by 'www-data'; -- 增加用户的权限
 
-grant select, insert, update, delete on awesome.* to 'www-data'@'localhost' identified by 'www-data';
-
-create table users (
+create table users ( -- 创建用户信息表，参数依次为列名、数值类型以及属性
     `id` varchar(50) not null,
     `email` varchar(50) not null,
     `passwd` varchar(50) not null,
@@ -21,6 +20,7 @@ create table users (
     primary key (`id`)
 ) engine=innodb default charset=utf8;
 
+/*多行注释方式
 create table blogs (
     `id` varchar(50) not null,
     `user_id` varchar(50) not null,
@@ -45,3 +45,4 @@ create table comments (
     key `idx_created_at` (`created_at`),
     primary key (`id`)
 ) engine=innodb default charset=utf8;
+*/

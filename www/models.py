@@ -1,18 +1,34 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'''
-user, blog, comment的模型
-'''
+__author__ ='Mosan'
 
-__author__ = 'MoSan'
-
-import time, uuid
+'''
+创建数据库表的model实例对象
+'''
 
 from orm import Model, StringField, BooleanField, FloatField, TextField
+import time, uuid
+#uuid即是Universal Unique IDendifier全局唯一 标识符可通过多种方式来保证ID的唯一性
 
+#生成唯一的ID
 def next_id():
-    return '%015d%s000' % (int(time.time() * 1000), uuid.uuid4().hex)
+    return '%015d%s000' % (int(time.time() *1000), uuid.uuid4().hex) #uuid4是基于随机数的方式
+
+#生成User即用户信息模型
+'''
+def User(Model):
+    __table__ = 'users'
+    id = StringField(primary_key=True, default=next_id, ddl='varchar(50)') #调用函数为何不带()
+    email = StringField(ddl='varchar(50)') #参数若为定义时设置的默认值，则不需要传入 
+    name = StringField(ddl='varchar(50)')
+    passwd = StringField(ddl='varchar(50)')
+    admin = BooleanField()
+    image = StringField(ddl='varchar(500)') #TextField和StringField的区别在于文本和字符串（容量大小）;这里同时限制了图片的大小为500的字符?
+    created_at = FloatField(default=time.time)
+问题可能出在顺序
+'''
+
 
 class User(Model):
     __table__ = 'users'
@@ -25,25 +41,3 @@ class User(Model):
     image = StringField(ddl='varchar(500)')
     created_at = FloatField(default=time.time)
 
-class Blog(Model):
-    __table__ = 'blogs'
-
-    id = StringField(primary_key=True, default=next_id, ddl='varchar(50)')
-    user_id = StringField(ddl='varchar(50)')
-    user_name = StringField(ddl='varchar(50)')
-    user_image = StringField(ddl='varchar(500)')
-    name = StringField(ddl='varchar(50)')
-    summary = StringField(ddl='varchar(200)')
-    content = TextField()
-    created_at = FloatField(default=time.time)
-
-class Comment(Model):
-    __table__ = 'comments'
-
-    id = StringField(primary_key=True, default=next_id, ddl='varchar(50)')
-    blog_id = StringField(ddl='varchar(50)')
-    user_id = StringField(ddl='varchar(50)')
-    user_name = StringField(ddl='varchar(50)')
-    user_image = StringField(ddl='varchar(500)')
-    content = TextField()
-    created_at = FloatField(default=time.time)

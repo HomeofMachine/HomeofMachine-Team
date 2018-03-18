@@ -1,56 +1,52 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'''
-配置文件管理
-'''
+__author__ ='Mosan'
 
-__author__ = 'MoSan'
+'''
+用以简化配置文件的读取
+'''
 
 import config_default
 
-class Dict(dict): #继承dict类
-    '''
-    Simple dict but support access as x.y style.
-    '''
-    def __init__(self, names=(), values=(), **kw): #仅当定义类内方法时需加self
+#定义支持x.y风格存取的字典类
+class Dict(dict):
+    def __init__(self, names=(), values=(), **kw):
         super(Dict, self).__init__(**kw)
         for k, v in zip(names, values):
             self[k] = v
-
     def __getattr__(self, key):
         try:
             return self[key]
         except KeyError:
-            raise AttributeError(r"'Dict' object has no attribute '%s'" % key)
-
+            raise AttributeError(r"'Dict' object has no attribution %s" % key)
     def __setattr__(self, key, value):
         self[key] = value
 
-def merge(defaults, override): #合并配置文件函数，实现快速开发部署
+#定义配置文件合并方法,用递归对字典解包
+def merge(default, override):
     r = {}
-    for k, v in defaults.items(): #使用字典的item()方法使键值分离
+    for k, v in default.items():
         if k in override:
             if isinstance(v, dict):
                 r[k] = merge(v, override[k])
             else:
                 r[k] = override[k]
         else:
-            r[k] = v
+            r[k] = v 
     return r
-
-def toDict(d): 
-    D = Dict()
+            
+#定义方法实现：将多层字典转化为单层字典
+def toDict(d):
+    D = Dict() #与dict的区别在哪
     for k, v in d.items():
         D[k] = toDict(v) if isinstance(v, dict) else v
     return D
 
 configs = config_default.configs
-
 try:
     import config_override
-    configs = merge(configs, config_override.configs)
+    configs = merge(configs, config_override.configs) #这里的merge不是python的内置函数，但是也不用实现,因为配置的时候？环境会有实现
 except ImportError:
-    pass
-
+    pass 
 configs = toDict(configs)

@@ -1,27 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = 'MoSan'
+__author__ ='Mosan'
 
 '''
-async web 应用
+web application的运行脚本
 '''
 
-import logging; logging.basicConfig(level=logging.INFO)
-
-import asyncio, os, json, time
+import asyncio, json, time, os
+import logging;logging.basicConfig(level=logging.INFO)
+import orm
 from datetime import datetime
-
 from aiohttp import web
+from handlers import cookie2user, COOKIE_NAME
+from config import configs
+from coroweb import add_routes, add_static
 from jinja2 import Environment, FileSystemLoader
 
-from config import configs
-
-import orm
-from coroweb import add_routes, add_static
-
-from handlers import cookie2user, COOKIE_NAME
-
+#初始化jinja2模板引擎：虽然暂时并未模板化前端代码，但是后端处理请求时需要其来设置路径
+#（暂时）先直接复制
 def init_jinja2(app, **kw): # 初始化jinja2引擎函数
     logging.info('init jinja2...') #logging库信息显示方法info
     options = dict( #定义选项字典;kw.get方法的功能是若有则获取，没有则按第二个参数生成
@@ -43,87 +40,102 @@ def init_jinja2(app, **kw): # 初始化jinja2引擎函数
             env.filters[name] = f
     app['__templating__'] = env #将app的内部参数templating设置为env实例
 
-@asyncio.coroutine #python的@语法，放在函数的定义处，此处表示：logger_factory = asyncio.coroutine(logger_factory);把定义后的函数作为参数传送给@后的函数
-def logger_factory(app, handler): #日志记录器工厂协程函数
-    @asyncio.coroutine
-    def logger(request): #日志记录器协程函数
-        logging.info('Request: %s %s' % (request.method, request.path)) #日志显示请求方法与请求路径信息
-        # yield from asyncio.sleep(0.3)
-        return (yield from handler(request)) #使用另一协程获取对请求的处理结果并返回
-    return logger #返回值为函数
+#定义实现middleware拦截器功能的方法
 
+#记录url日志
 @asyncio.coroutine
-def auth_factory(app, handler): #认证工厂协程函数
+def logger_factory(app, handler):
+    #记录日志
     @asyncio.coroutine
-    def auth(request): #认证协程函数，传入请求
-        logging.info('check user: %s %s' % (request.method, request.path)) #显示登录信息检查用户：来自请求方法，请求路径
-        request.__user__ = None #请求的内部用户变量设置为空
-        cookie_str = request.cookies.get(COOKIE_NAME) #尝试从请求的cookies中获取cookie名（若存在）
-        if cookie_str: #若该cookie信息存在
-            user = yield from cookie2user(cookie_str) #调用协程将cookie转化为用户信息
-            if user: #若用户信息存在
-                logging.info('set current user: %s' % user.email) #显示日志：设置当前用户为：用户邮件
-                request.__user__ = user #将请求内部用户变量设置为该用户
-        if request.path.startswith('/manage/') and (request.__user__ is None or not request.__user__.admin): #若请求路径以管理为开始并且请求内部用户为空或者不是管理员用户
-            return web.HTTPFound('/signin') #返回web库方法HTTPFound，参数为登录页url
-        return (yield from handler(request)) #返回调用协程对请求的处理结果
-    return auth #返回认证函数
+    def logger(request): #为何写成这样的形式
+        logging.info("handle the request %s and %s" % (request.method, request.path))
+    #继续处理
+        return (yield from handler(request))
+    return logger
 
+#定义response拦截器，将返回的数据转化为web.Response,以满足aiohttp的方法
+@asyncio.coroutine
+def response_factory(app, handler):
+    @asyncio.coroutine
+    def response(request):
+        logging.info("Response handler...")
+        r = yield from handler(request)
+        if isinstance(r, web.StreamResponse):
+            return r
+        if isinstance(r, str):
+            if r.startswith('redirect:'):
+                return web.HTTPFound(r[:9])
+            resp = web.Response(body=r.encode('utf-8'))
+            resp.content_type = 'text/html;charset=utf-8'
+            return resp
+        if isinstance(r, bytes):
+            resp = web.Reponse(body=r)
+            resp.content_type = 'application/octet=stream'
+            return resp
+        if isinstance(r, dict):
+            template = r.get('__template__')
+            if template is None:
+                resp = web.Response(body=json.dumps(r, ensure_ascii=False, default=lambda o: o.__dict__).encode('utf-8'))
+                resp.content_type = 'application/json;charset=utf-8'
+                return resp
+            else:
+                r['__user__'] = request.__user__
+                resp = web.Response(body=app['__templating__'].get_template(template).render(**r).encode('utf-8'))
+                resp.content_type = 'text/html;charset=utf-8'
+                return resp
+        #若直接是数字则是错误码，直接返回
+        if isinstance(r, int):
+            if r >= 100 and r < 600:
+                return web.Response(r)
+        #若是元组，则是错误原因和错误码的组合
+        if isinstance(r, tuple):
+            if len(r) == 2:
+                t, m = r
+                if isinstance(t, int) and t >=100 and t < 600:
+                    return web.Response(t, str(m))
+        #否则默认返回原始数据
+        resp = web.Response(body=str(r).encode('utf-8'))
+        resp.content_type = 'text/plain;charset=utf-8' #表示将文件格式设置为纯文本形式，不会进行解释
+        return resp
+    return response
+
+
+
+#定义用户认证拦截器
+@asyncio.coroutine
+def auth_factory(app, handler):
+    @asyncio.coroutine
+    def auth(request):
+        logging.info("check user:%s %s" % (request.method, request.path))
+        request.__user__ = None
+        cookie_str = request.cookies.get(COOKIE_NAME)
+        if cookie_str:
+            user = yield from cookie2user(cookie_str) #涉及数据IO用协程操作
+            if user:
+                logging.info("set current user: %s" % user.email)
+                request.__user__ = user
+        #检查是否为管理员
+        #确定为用户后继续处理请求
+        return (yield from handler(request))
+    return auth
+#定义数据处理拦截器
+#copy
 @asyncio.coroutine
 def data_factory(app, handler): #数据工厂协程
     @asyncio.coroutine
     def parse_data(request): #解析数据协程
-        if request.method == 'POST': #若请求方法为post
-            if request.content_type.startswith('application/json'): #若请求内容类型以application/json为开始
-                request.__data__ = yield from request.json() #将请求数据设置为协程对request的json实例
-                logging.info('request json: %s' % str(request.__data__)) #显示日志信息：请求json数据
-            elif request.content_type.startswith('application/x-www-form-urlencoded'): #又若请求内容类型是应用/x-www格式的url编码
-                request.__data__ = yield from request.post() #将请求数据设置为协程获得的请求post实例
-                logging.info('request form: %s' % str(request.__data__)) #显示日志 信息请求类型为：
-        return (yield from handler(request)) #返回 协程处理请求的结果
-    return parse_data #返回解析数据函数
+        if request.method == 'POST':
+            if request.content_type.startswith('application/json'):
+                request.__data__ = yield from request.json()
+                logging.info('request json: %s' % str(request.__data__))
+            elif request.content_type.startswith('application/x-www-form-urlencoded'):
+                request.__data__ = yield from request.post()
+                logging.info('request form: %s' % str(request.__data__))
+        return (yield from handler(request))
+    return parse_data
 
-@asyncio.coroutine
-def response_factory(app, handler): #响应生成器协程
-    @asyncio.coroutine
-    def response(request): #响应协程
-        logging.info('Response handler...') #日志显示：响应处理器
-        r = yield from handler(request) #获取协程处理请求的结果
-        if isinstance(r, web.StreamResponse): #判断是否为web库的流响应实例
-            return r #若是，则返回该实例
-        if isinstance(r, bytes): #判断是否为字节型实例，若是则
-            resp = web.Response(body=r) #获取body参数为r的响应 实例
-            resp.content_type = 'application/octet-stream' #将该响应实例的内容类型该设置为应用/octet流
-            return resp #返回该响应实例
-        if isinstance(r, str): #若是字符型实例
-            if r.startswith('redirect:'): #若该实例以重定位起始
-                return web.HTTPFound(r[9:]) #返回参数为该实例的第九个元素之后为参数的web库HTTPFound实例
-            resp = web.Response(body=r.encode('utf-8')) #获取body参数为r实例编码为utf-的web 响应实例
-            resp.content_type = 'text/html;charset=utf-8' #将该实例类型设置为文本/html;字符设置 为utf8
-            return resp #返回该实例
-        if isinstance(r, dict): #若该实例为字典类型
-            template = r.get('__template__') #获得该实例的内部模板参数
-            if template is None:#若该模板参数为空
-                resp = web.Response(body=json.dumps(r, ensure_ascii=False, default=lambda o: o.__dict__).encode('utf-8')) #获得body参数为json缩进以及设置参数的r实例的web库响应实例
-                resp.content_type = 'application/json;charset=utf-8' #设置响应实例的内容类型
-                return resp #返回 响应实例
-            else: #若该模板不为空
-                r['__user__'] = request.__user__ #r实例的内部用户变量设置为请求的内部用户
-                resp = web.Response(body=app['__templating__'].get_template(template).render(**r).encode('utf-8')) #获取设置参数的web库响应实例
-                resp.content_type = 'text/html;charset=utf-8' #设置返回实例的内容类型
-                return resp 
-        if isinstance(r, int) and t >= 100 and t < 600: #若该实例为int型且其值大于100小于600
-            return web.Response(t) #返回参数为t的web响应实例
-        if isinstance(r, tuple) and len(r) == 2: #若参数类型是tuple且长度为2
-            t, m = r #获取r的两个元素
-            if isinstance(t, int) and t >= 100 and t < 600: #若第一个元素为int型且大于100小于600
-                return web.Response(t, str(m)) #返回参数为t和字符型m的网页响应实例
-        # default: 
-        resp = web.Response(body=str(r).encode('utf-8')) #获取body参数为实例r字节型utf-8编码的web 响应实例
-        resp.content_type = 'text/plain;charset=utf-8' #设置响应内容类型
-        return resp
-    return response
-
+#定义日期时间过滤器：提供给jinja2模板
+#（暂时）直接copy
 def datetime_filter(t): #日期时间过滤函数
     delta = int(time.time() - t) #获取时间间隔
     if delta < 60: 
@@ -137,19 +149,20 @@ def datetime_filter(t): #日期时间过滤函数
     dt = datetime.fromtimestamp(t)
     return u'%s年%s月%s日' % (dt.year, dt.month, dt.day)
 
+#启动过程封装
 @asyncio.coroutine
-def init(loop): #初始化函数
-    yield from orm.create_pool(loop=loop, **configs.db) #调用协程创建数据库连接池
-    app = web.Application(loop=loop, middlewares=[
-        logger_factory, auth_factory, response_factory
-    ]) #web库方法Application传入循环实例，以获取web app实例
-    init_jinja2(app, filters=dict(datetime=datetime_filter)) #自写函数传入app实例，初始化jinja2模板引擎
-    add_routes(app, 'handlers') #增加路径
+def init(loop):
+    yield from orm.create_pool(loop=loop, **configs.db)
+    app = web.Application(loop=loop, middlewares=[logger_factory, auth_factory, response_factory])
+    init_jinja2(app, filters=dict(datetime=datetime_filter)) #直接copy
+    add_routes(app, 'handlers')
     add_static(app)
     srv = yield from loop.create_server(app.make_handler(), '127.0.0.1', 9000)
-    logging.info('server started at http://127.0.0.1:9000...')
+    logging.info("Started server at http://127.0.0.1:9000")
     return srv
 
-loop = asyncio.get_event_loop() #获取事件循环实例
-loop.run_until_complete(init(loop)) #放入初始化的循环实例，并运行直至完成
-loop.run_forever() #持续运行
+#启动
+loop = asyncio.get_event_loop()
+loop.run_until_complete(init(loop))
+loop.run_forever()
+#test

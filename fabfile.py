@@ -48,7 +48,7 @@ def build():
     '''
     Build dist package.
     '''
-    includes = ['static', 'templates', 'transwarp', 'favicon.ico', '*.py']
+    includes = ['static', 'templates', 'transwarp', 'favicon.ico', '*.py', 'schema.sql']
     excludes = ['test', '.*', '*.pyc', '*.pyo']
     local('rm -f dist/%s' % _TAR_FILE)
     with lcd(os.path.join(_current_path(), 'www')):

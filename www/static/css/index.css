@@ -5,8 +5,12 @@
 a {
     text-decoration: none;
 }
+
 ul,ol,li {
     list-style: none;
+}
+body {
+    background: url("../../static/images/bg.png");
 }
 .header {
     width: 1200px;
@@ -32,8 +36,11 @@ ul,ol,li {
     margin-top: 36px;
 }
 .header-search input {
-    width: 440px;
+    width: 420px;
     height: 40px;
+    padding: 0 10px;
+    color: #707070;
+    font-size: 20px;
     border: 2px solid #27CBAB;
     margin-bottom: 5px;
 }
@@ -49,12 +56,17 @@ ul,ol,li {
     font-size: 18px;
     line-height: 44px;
     text-align: center;
+    cursor: pointer;
     margin: 0 auto;
+}
+.header-search a:hover {
+    color: #27CBAB;
 }
 .header-search a {
     display: block;
     float: left;
-    margin-right: 35px;
+    font-size: 13px;
+    margin-right: 25px;
     color: #c8c8c8;
 }
 .header-r {
@@ -86,6 +98,37 @@ ul,ol,li {
     text-align: center;
     margin: 0 auto;
 }
+.signOut {
+    float: right;
+    height: 38px;
+    font-size: 16px;
+    line-height: 38px;
+    color: #c8c8c8;
+    margin-top: 50px;
+    display: none;
+    /*background-color: #000000;*/
+}
+.signOut .l a:hover {
+    color: #27CBAB;
+}
+.signOut .r a:hover {
+    color: #cc1407;
+}
+.signOut a{
+    color: #c8c8c8;
+}
+.signOut .l{
+    float: left;
+    padding-right: 5px;
+}
+.signOut .shu {
+    float: left;
+}
+.signOut .r {
+    float: right;
+    padding-left: 5px;
+}
+
 .header-r .header-r-current {
     background-color: #27CBAB;
 }
@@ -98,6 +141,7 @@ ul,ol,li {
 /*nav部分开始*/
 .nav {
     width: 100%;
+    min-width:1200px;
     height: 44px;
     background-color: #27CBAB;
 }
@@ -167,4 +211,131 @@ ul,ol,li {
 .nav-current {
     background: #00B38A;
 }
+.footer {
+    width: 100%;
+    height: 250px;
+    position: relative;
+}
+.footer .footer-content {
+    width: 1200px;
+    background-color: #ccc;
+    margin: 0 auto;
+}
+.footer .footer-content .footer-l {
+    float: left;
+    position: absolute;
+    height: 250px;
+}
+.footer .footer-content .footer-l .logo {
+    position: absolute;
+    top: 40px;
+}
+.footer .footer-content .footer-l .top {
+    position: absolute;
+    top: 120px;
+}
+.footer .footer-content .footer-l .top i {
+    position: absolute;
+    width: 22px;
+    height: 17px;
+    top: 2px;
+    background: url("../../static/images/qq.png") no-repeat;
+}
+.footer .footer-content .footer-l .top span {
+    position: absolute;
+    display: inline-block;
+    width: 180px;
+    height: 24px;
+    line-height: 24px;
+    margin-left: 40px;
+    color: #27CBAB;
+    font-size: 18px;
+}
+.footer .footer-content .footer-l .bottom {
+    position: absolute;
+    top: 160px;
+}
+.footer .footer-content .footer-l .bottom i {
+    position: absolute;
+    width: 22px;
+    height: 17px;
+    top: 2px;
+    left: 1px;
+    background: url("../../static/images/qq.png") no-repeat -22px;
+}
+.footer .footer-content .footer-l .bottom span {
+    position: absolute;
+    display: inline-block;
+    color: #27CBAB;
+    font-size: 18px;
+    width: 180px;
+    height: 24px;
+    line-height: 24px;
+    margin-left: 40px;
+}
+.footer .footer-r {
+    /*position: absolute;*/
+    /*right: 300px;*/
+    /*height: 250px;*/
+    /*margin-top: 20px;*/
+    right: 0;
+    float: right;
+    height: 250px;
+}
+.footer .footer-r .big-ul {
+    height: 200px;
+}
+.footer .footer-r .big-ul li {
+    float: left;
+    width: 200px;
+    height: 200px;
+}
+.footer .footer-r .big-ul li ul {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+.footer .footer-r .big-ul li ul li {
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
 
+}
+.footer .footer-r .big-ul li ul .first-title {
+
+    font-size: 18px;
+    color: #c8c8c8;
+}
+/*footer部分结束*/
+.link {
+    width: 100%;
+    height: 200px;
+    position: relative;
+}
+
+.footer-bottom {
+    height: 193px;
+    margin-top: 20px;
+    border-top: 1px solid #E5E5E5;
+    padding: 20px 0 30px;
+    text-align: center;
+}
+.footer-bottom-link {
+    margin-bottom: 10px;
+}
+.footer-bottom-link a {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #000;
+}
+#first-a {
+    margin-left: 0;
+}
+#last-a {
+    margin-right: 0;
+}
+.footer-bottom-copyright {
+    margin-top: 16px;
+    font-size: 14px;
+}

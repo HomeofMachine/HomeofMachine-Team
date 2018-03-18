@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'''
-覆盖配置，即部署到服务器的配置文件
-'''
+__author__ ='Mosan'
 
-__author__ = 'Mosan'
+'''
+当部署到远程服务器上时的配置文件
+'''
 
 configs = {
     'db': {
-        'host': '127.0.0.1'
+        'host': '127.0.0.1',
+       # 'password': 'mysqlmima2018'
     }
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+    <script src="../static/js/jquery-1.11.1.min.js"></script>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/login.js"></script>
+    <script src="../static/js/sha1.min.js"></script>
+    <!--<script src="../static/js/vue.min.js"></script>-->
+    <!--<script src="../static/js/uikit.min.js"></script>-->
+    <!--<script src="../static/js/sticky.min.js"></script>-->
+    <!--<script src="../static/js/awesome.js"></script>-->
+    <!--<script>-->
+        <!--$(function() {-->
+            <!--var vmAuth = new Vue({-->
+                <!--el: '#vm',-->
+                <!--data: {-->
+                    <!--email: '',-->
+                    <!--passwd: ''-->
+                <!--},-->
+                <!--methods: {-->
+                    <!--submit: function(event) {-->
+                        <!--event.preventDefault();-->
+                        <!--var-->
+                                <!--$form = $('#vm'),-->
+                                <!--email = this.email.trim().toLowerCase(),-->
+                                <!--data = {-->
+                                    <!--email: email,-->
+                                    <!--passwd: this.passwd==='' ? '' : CryptoJS.SHA1(email + ':' + this.passwd).toString()-->
+                                <!--};-->
+                        <!--$form.postJSON('register.php', data, function(err, result) {-->
+                            <!--if (! err) {-->
+                                <!--location.assign('http://www.baidu.com');-->
+                            <!--}-->
+                        <!--});-->
+                    <!--}-->
+                <!--}-->
+            <!--});-->
+        <!--});-->
+
+    <!--</script>-->
+</head>
+<body>
+
+<div class="title">
+    <a href="/"><img src="../static/images/jxzj_black.png" alt="机械之家" title="机械之家"></a>
+</div>
+<div class="w">
+    <div class="bg">
+        <img src="../static/images/rack.gif" alt="">
+    </div>
+    <div class="inf">
+        <!--<form action="" method="">-->
+            <div class="wel">您好，请登录</div>
+               <!--<form id="vm" v-on="submit: submit">-->
+                   <div class="userName">
+                    <input type="text" placeholder="邮箱" id="sEmail" name="email">
+                    <lable class="error-hint"></lable>
+                    <lable class="right-hint"></lable>
+                    <lable class="icon icon1"><img class="icon_img" src="../static/images/email.png" alt=""></lable>
+                    <lable class="hint"></lable>
+                </div>
+                <div class="password">
+                    <input placeholder="密码"  name="password" id="sPassword" type="password">
+                    <lable class="error-hint"></lable>
+                    <lable class="right-hint"></lable>
+                    <lable class="icon icon2"><img class="icon_img" src="../static/images/password.png" alt=""></lable>
+                    <lable class="hint"></lable>
+                </div>
+                <div class="button">
+                    <input type="submit" id="button" value="登录">
+                </div>
+               <!--</form>-->
+        <!--</form>-->
+    </div>
+</div>
+
+</body>
+</html>

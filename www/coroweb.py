@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
-协程封装库 
-'''
 
 __author__ = 'MoSan'
 
@@ -16,10 +13,9 @@ from apis import APIError
 
 def get(path):
     '''
-    定义装饰器 @get('/path')
+    Define decorator @get('/path')
     '''
-    def decorator(func): #装饰器：接受函数作为参数，并返回一个函数。以实现动态增加函数功能（不改变原函数定义）
-                         #由于装饰器返回一个函数，因此原函数仍存在，但原函数同名变量指向新函数，因此调用该变量仍
+    def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kw):
             return func(*args, **kw)

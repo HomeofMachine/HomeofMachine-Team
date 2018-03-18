@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: url("../../static/images/bg.png");
+}
+.title  {
+    min-width:1200px;
+    height: 63px;
+    background-color: #27CBAB;
+}
+.title img {
+    margin-left: 30px;
+}
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+.bg {
+    float: left;
+    margin-top: 80px;
+}
+.bg img {
+    width: 422px;
+    height: 387px;
+}
+.inf {
+    float: right;
+    width: 500px;
+    margin-right: 80px;
+    position: relative;
+}
+.inf .wel {
+    width: 400px;
+    font-size: 48px;
+    font-weight: 700;
+    color: #27CBAB;
+    margin: 40px auto -20px;
+}
+.inf .name,.password ,.e-mail ,.button{
+    width: 400px;
+    margin: 60px auto;
+}
+.inf input {
+    width: 344px;
+    height: 40px;
+    padding-left: 56px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #707070;
+    border: 2px solid #c8c8c8;
+    border-radius: 3px;
+    outline: none;
+}
+.inf .error-hint {
+    position: absolute;
+    font-size: 18px;
+    color: red;
+    left: 60px;
+    display: none;
+    margin-top: -0px;
+}
+.inf .right-hint {
+    position: absolute;
+    font-size: 18px;
+    color: #27CBAB;
+    left: 60px;
+    display: none;
+    margin-top: -0px;
+}
+.inf .hint {
+    position: absolute;
+    font-size: 18px;
+    color: #27CBAB;
+    left: 60px;
+    display: none;
+    margin-top: -0px;
+}
+.inf .button {
+    width: 200px;
+    height: 60px;
+    z-index: 99;
+}
+.inf .button input {
+    padding: 0px;
+    text-align: center;
+    cursor: pointer;
+    width: 200px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #27CBAB;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+.inf .icon{
+     position: absolute;
+     left: 60px;
+     margin-top: -40px;
+ }
+.inf .icon1 img {
+    width: 38px;
+    height: 38px;
+}
+.inf .icon2 img {
+    width: 33px;
+    height: 33px;
+    margin-left: 2px;
+}
+.inf .icon3 img {
+    width: 40px;
+    height: 34px;
+    margin-top: 1px;
+}
